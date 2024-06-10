@@ -9,16 +9,16 @@ from os import path
 import random
 
 def main():
-    menu();
-  
-def menu():
-    global Highscore, file
     print("RULES: \n")
     print("You have been chosen to participate in a gladiator match.")
     print("You have 10 lives as well as the option to use either a sword, spear or shield in a rock paper scissors style combat system.")
     print("Sword defeats spear, spear defeats shield, and shield defeats sword.")
     print("You will encounter 1 opponent every wave. Defeating opponents gives you 5 points.")
     print("The game will continue until you lose all ten lives, and once that happens the game is over and your score will be displayed. \n")
+    menu();
+  
+def menu():
+    global Highscore, file
     Begin = str(input("Would you like to begin?(1 for yes and 2 for no)"));
     match(Begin):
         case("1"):
@@ -36,6 +36,7 @@ def menu():
           
         case(_):
             print("Please enter a valid input.");
+            menu();
   
   
 def Combat():
@@ -70,7 +71,7 @@ def Combat():
                
             case(_):
                 print("Please enter a valid input.")
-    
+                
     results();
                 
 def checkrandom():
@@ -123,6 +124,9 @@ def results():
     print(display)
     pythfile.close()
     
+    tryagain();
+    
+def tryagain():
     Retry = str(input("Do you want to try again? (1 for yes, 2 for no)"));
     match(Retry):
         case("1"):
@@ -131,8 +135,9 @@ def results():
         case("2"):
             print("Goodbye");
         case(_):
-            print("please enter a valid input");    
+            print("please enter a valid input");
+            tryagain();    
         
-  
 if __name__=="__main__":
     main();
+
